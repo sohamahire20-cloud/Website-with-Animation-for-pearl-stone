@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Pearlstone Villa — Private Waterfront Estate | Nashik</title>
+  <meta name="description" content="Where Luxury Meets the Water’s Edge. An architectural 5 BHK private waterfront sanctuary in Nashik, Maharashtra." />
+
+  <!-- Google Fonts: Editorial Serif & Contemporary Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="landing-locked">
+
+  <!-- TOP GLOBAL SCROLL PROGRESS BAR -->
+  <div class="global-scroll-progress" id="globalProgressBar"></div>
+
+  <!-- =========================================================================
+       01: FULL-SCREEN 100% INTERACTIVE LANDING ANIMATION GATE
+       ========================================================================= -->
+  <div class="landing-gate-overlay" id="landingGate">
+    <canvas id="sequenceCanvas"></canvas>
+    <div class="landing-gate-scrim"></div>
+
+    <!-- Centered Editorial Brand Identity -->
+    <div class="landing-gate-content" id="gateContent">
+      <span class="gate-brand-eyebrow">EXCLUSIVE SANCTUARY · NASHIK</span>
+      <h1 class="gate-title">PEARL STONE VILLA</h1>
+      <p class="gate-tagline">Where Luxury Meets the Water’s Edge</p>
+      <div class="gate-meta-pill">5 BHK · PRIVATE WATERFRONT ESTATE · PRIVATE POOL</div>
+    </div>
+
+    <!-- Live 0% to 100% Progress Indicator -->
+    <div class="corner-percent" id="cornerPercent">0%</div>
+
+    <!-- Scroll / Swipe Hint -->
+    <div class="gate-scroll-hint" id="gateScrollHint">
+      <span>SCROLL / SWIPE TO UNVEIL</span>
+      <div class="gate-scroll-line"></div>
+    </div>
+
+    <!-- 100% UNLOCK CTA (Appears ONLY when animation reaches 100%) -->
+    <div class="gate-unlock-container" id="gateUnlockContainer">
+      <button class="btn btn-unlock btn-shimmer" id="unlockBtn">
+        <span>ENTER THE ESTATE</span>
+        <span>↓</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MAIN WEBSITE CONTENT (Cascading Sections)
+       ========================================================================= -->
+  <div class="main-website-wrapper" id="mainWebsiteContent">
+
+    <!-- SITE HEADER -->
+    <header class="site-header" id="siteHeader">
+      <a href="./index.html" class="brand-logo">
+        <span class="brand-title">PEARLSTONE</span>
+        <span class="brand-sub">VILLA · NASHIK</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="./index.html" class="nav-link active">Home</a>
+        <a href="./villa.html" class="nav-link">The Villa</a>
+        <a href="#gallerySection" class="nav-link" id="navGalleryLink">Gallery</a>
+        <a href="./stay.html" class="nav-link">Stay</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://www.airbnb.com/rooms/1641803912745461651?unique_share_id=f7a27b23-76ab-4ea4-8b20-8a8e5089aa7b&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="nav-cta">BOOK</a>
+        <button class="mobile-menu-btn" id="openMobileNav" aria-label="Open Navigation Menu">MENU</button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+      <div class="mobile-nav-header">
+        <div class="brand-logo">
+          <span class="brand-title">PEARLSTONE</span>
+          <span class="brand-sub">NASHIK</span>
+        </div>
+        <button class="mobile-menu-btn" id="closeMobileNav" aria-label="Close Menu">CLOSE ✕</button>
+      </div>
+
+      <div class="mobile-nav-links">
+        <a href="./index.html" class="mobile-nav-link">01 / Home</a>
+        <a href="./villa.html" class="mobile-nav-link">02 / The Villa</a>
+        <a href="./stay.html" class="mobile-nav-link">03 / Stay</a>
+        <a href="#gallerySection" class="mobile-nav-link" id="mobileGalleryLink">04 / Gallery</a>
+      </div>
+
+      <div class="mobile-nav-footer">
+        <a href="https://www.airbnb.com/rooms/1641803912745461651?unique_share_id=f7a27b23-76ab-4ea4-8b20-8a8e5089aa7b&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn btn-primary-charcoal">BOOK YOUR STAY</a>
+        <a href="https://wa.me/919970001554?text=Hi%20Pearlstone%20Villa%2C%20I%20would%20like%20to%20know%20more%20about%20the%20villa." target="_blank" rel="noopener" class="btn btn-secondary-outline">WHATSAPP CONCIERGE</a>
+      </div>
+    </div>
+
+    <!-- 02: PRIVATE ESTATE INTRODUCTION -->
+    <section class="section-intro" id="introSection">
+      <div class="container">
+        <div class="intro-grid">
+          <div class="reveal-fade">
+            <div class="section-eyebrow">PEARLSTONE / NASHIK</div>
+            <h2 class="section-heading-editorial">A Private Estate,<br>Beside the Water.</h2>
+          </div>
+          <div class="intro-copy-column reveal-fade stagger-2">
+            <p>
+              Designed around water, light and open space, Pearlstone Villa offers a quieter way to experience Nashik — with contemporary architecture, greenery, a private pool and the feeling of having the landscape almost entirely to yourself.
+            </p>
+            <div class="intro-meta-grid">
+              <div class="meta-block">
+                <span class="meta-num" data-target="5">05</span>
+                <span class="meta-lbl">En-Suite Bedrooms</span>
+              </div>
+              <div class="meta-block">
+                <span class="meta-num" data-target="380">380 FT</span>
+                <span class="meta-lbl">Shoreline Frontage</span>
+              </div>
+              <div class="meta-block">
+                <span class="meta-num" data-target="25">25 M</span>
+                <span class="meta-lbl">Infinity Edge Pool</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: THE ESTATE (Architectural Photography & Materiality) -->
+    <section class="section-estate" id="estateSection">
+      <div class="container">
+        <div class="estate-feature-image-wrapper reveal-scale">
+          <img src="/images/whatsapp_image_2026_08_23_at_11.18.48_am_1.jpeg_screen.png" alt="Pearlstone Villa Waterfront Architecture" class="estate-feature-img" loading="lazy" />
+          <div class="estate-image-scrim"></div>
+          <div class="estate-annotations">
+            <div class="annotation-item reveal-fade stagger-1">
+              <span class="ann-num">05</span>
+              <span class="ann-label">BEDROOMS</span>
+            </div>
+            <div class="annotation-item reveal-fade stagger-2">
+              <span class="ann-num">PRIVATE</span>
+              <span class="ann-label">WATERFRONT</span>
+            </div>
+            <div class="annotation-item reveal-fade stagger-3">
+              <span class="ann-num">PRIVATE</span>
+              <span class="ann-label">POOL</span>
+            </div>
+            <div class="annotation-item reveal-fade stagger-4">
+              <span class="ann-num">12,800</span>
+              <span class="ann-label">SQ FT ESTATE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: A DAY AT PEARLSTONE (Editorial Timeline Storytelling) -->
+    <section class="section-day-timeline" id="dayTimelineSection">
+      <div class="container">
+        <div class="timeline-header reveal-fade">
+          <div class="section-eyebrow" style="justify-content: center;">A DAY AT PEARLSTONE</div>
+          <h2 class="section-heading-editorial">Rhythm of Water & Light</h2>
+        </div>
+
+        <!-- Morning -->
+        <div class="day-story-row reveal-fade">
+          <div class="story-img-col">
+            <img src="/images/whatsapp_image_2026_08_23_at_11.18.46_am.jpeg_screen.png" alt="Morning lake view from Pearlstone bedroom" loading="lazy" />
+          </div>
+          <div class="story-text-col">
+            <div class="story-time-tag">MORNING · 07:30</div>
+            <h3 class="story-title">Wake Up to the View.</h3>
+            <p class="story-desc">
+              Dawn rises softly over still waters. Gentle breeze filters through tall sheer glass as light fills expansive private suites overlooking the lake.
+            </p>
+          </div>
+        </div>
+
+        <!-- Afternoon -->
+        <div class="day-story-row reversed reveal-fade">
+          <div class="story-img-col">
+            <img src="/images/a_high_end_architectural_photograph_of_a_luxury_2_level_minimalist_villa_in_screen.png" alt="Poolside lawn and architecture at Pearlstone" loading="lazy" />
+          </div>
+          <div class="story-text-col">
+            <div class="story-time-tag">AFTERNOON · 14:00</div>
+            <h3 class="story-title">Poolside, Unhurried.</h3>
+            <p class="story-desc">
+              Sun-drenched loungers, manicured emerald lawns, and an azure heated infinity pool that dissolves seamlessly into the lake horizon.
+            </p>
+          </div>
+        </div>
+
+        <!-- Evening -->
+        <div class="day-story-row reveal-fade">
+          <div class="story-img-col">
+            <img src="/images/twilight_photo_of_a_white_minimalist_villa_in_nashik_india._illuminated_black_screen.png" alt="Golden hour twilight pool reflection" loading="lazy" />
+          </div>
+          <div class="story-text-col">
+            <div class="story-time-tag">EVENING · 18:45</div>
+            <h3 class="story-title">Golden Hours by the Water.</h3>
+            <p class="story-desc">
+              As the sun dips beneath the western peninsula, warm ambient architectural lighting awakens the travertine terraces and sunken fire lounge.
+            </p>
+          </div>
+        </div>
+
+        <!-- Night -->
+        <div class="day-story-row reversed reveal-fade">
+          <div class="story-img-col">
+            <img src="/images/whatsapp_image_2026_08_23_at_11.18.47_am.jpeg_screen.png" alt="Inside Pearlstone living salon by night" loading="lazy" />
+          </div>
+          <div class="story-text-col">
+            <div class="story-time-tag">NIGHT · 21:30</div>
+            <h3 class="story-title">Stay a Little Longer.</h3>
+            <p class="story-desc">
+              Secluded privacy under starlit skies. Unhurried conversation across open living salons, surrounded by deep silence and mirroring waters.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: SELECTED GALLERY -->
+    <section class="section-gallery" id="gallerySection">
+      <div class="container">
+        <div class="gallery-header-row reveal-fade">
+          <div>
+            <div class="section-eyebrow">PORTFOLIO</div>
+            <h2 class="section-heading-editorial">The Estate, in Frame.</h2>
+            <p style="color: var(--color-text-secondary); max-width: 480px; font-weight: 300;">
+              Architecture, water, light and the spaces between.
+            </p>
+          </div>
+          <div>
+            <button class="btn btn-secondary-outline" id="openLightboxAllBtn">VIEW THE GALLERY</button>
+          </div>
+        </div>
+
+        <div class="gallery-editorial-grid">
+          <div class="gallery-item reveal-fade" data-index="0">
+            <img src="/images/whatsapp_image_2026_08_23_at_11.18.48_am_1.jpeg_screen.png" alt="Pearlstone Villa Exterior Dusk" loading="lazy" />
+            <div class="gallery-caption">Exterior Horizon & Shoreline</div>
+          </div>
+          <div class="gallery-item reveal-fade stagger-2" data-index="1">
+            <img src="/images/whatsapp_image_2026_08_23_at_11.18.46_am.jpeg_screen.png" alt="Bedroom Lake Vista" loading="lazy" />
+            <div class="gallery-caption">Private Bedroom Suite</div>
+          </div>
+        </div>
+
+        <div class="gallery-editorial-grid" style="grid-template-columns: 1fr 1.4fr;">
+          <div class="gallery-item reveal-fade" data-index="2">
+            <img src="/images/whatsapp_image_2026_08_23_at_11.18.47_am.jpeg_screen.png" alt="Living Salon Interior" loading="lazy" />
+            <div class="gallery-caption">Open Living Salon</div>
+          </div>
+          <div class="gallery-item reveal-fade stagger-2" data-index="3">
+            <img src="/images/twilight_photo_of_a_white_minimalist_villa_in_nashik_india._illuminated_black_screen.png" alt="Illuminated Evening Pool" loading="lazy" />
+            <div class="gallery-caption">Twilight Infinity Pool</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: GUEST REFLECTIONS / REVIEWS -->
+    <section class="section-reflections" id="reviewsSection">
+      <div class="container">
+        <div class="reflections-quote-box reveal-fade">
+          <div class="section-eyebrow" style="justify-content: center;">VERIFIED REVIEWS</div>
+          <blockquote class="reflections-quote-text">
+            “An extraordinary architectural sanctuary right on the water. The tranquility, infinity pool, and discreet private service made our family retreat unforgettable.”
+          </blockquote>
+          <div class="reflections-author">★ 5.0 RATED ON GOOGLE · VERIFIED GUEST STAY</div>
+          <div>
+            <a href="https://maps.app.goo.gl/38owRbvD3YBK7ToHA" target="_blank" rel="noopener" class="btn btn-secondary-outline">SEE MORE REVIEWS ON GOOGLE MAPS</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07: LOCATION -->
+    <section class="section-location" id="locationSection">
+      <div class="container">
+        <div class="location-grid">
+          <div class="location-details-box reveal-fade">
+            <div class="section-eyebrow">SANCTUARY COVE · NASHIK</div>
+            <h2 class="section-heading-editorial">By the Water.<br>Within Nashik.</h2>
+            <p style="color: var(--color-text-secondary); margin-bottom: 24px; font-weight: 300;">
+              Nestled on a private lakefront peninsula in Nashik, Maharashtra. Secluded from city bustle yet conveniently accessible for weekend getaways and private family stays.
+            </p>
+            <a href="https://maps.app.goo.gl/38owRbvD3YBK7ToHA" target="_blank" rel="noopener" class="btn btn-primary-charcoal">GET DIRECTIONS</a>
+          </div>
+          <div class="reveal-scale">
+            <a href="https://maps.app.goo.gl/38owRbvD3YBK7ToHA" target="_blank" rel="noopener" style="display: block; border: 1px solid var(--border-stone); overflow: hidden;">
+              <img src="/images/a_high_end_architectural_photograph_of_a_luxury_2_level_minimalist_villa_in_screen.png" alt="Pearlstone Villa Location Setting" loading="lazy" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08: FINAL INVITATION -->
+    <section class="section-final-invitation">
+      <div class="container">
+        <div class="invitation-inner reveal-fade">
+          <div class="section-eyebrow" style="color: var(--color-warm-bronze); justify-content: center;">PRIVATE WATERFRONT ESCAPE</div>
+          <h2 class="invitation-title">Your Time<br>by the Water.</h2>
+          <p class="invitation-desc">
+            A private space to slow down, reconnect and stay a little longer.
+          </p>
+          <div class="invitation-buttons">
+            <a href="https://www.airbnb.com/rooms/1641803912745461651?unique_share_id=f7a27b23-76ab-4ea4-8b20-8a8e5089aa7b&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn btn-white-solid">BOOK YOUR STAY</a>
+            <a href="https://wa.me/919970001554?text=Hi%20Pearlstone%20Villa%2C%20I%20would%20like%20to%20check%20availability%20for%20a%20stay." target="_blank" rel="noopener" class="btn btn-white-outline">WHATSAPP PEARLSTONE</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SITE FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <div class="footer-brand-title">PEARLSTONE VILLA</div>
+            <div class="footer-tagline">“Where Water Whispers & Luxury Lingers”</div>
+          </div>
+          <div>
+            <div class="footer-col-title">NAVIGATION</div>
+            <div class="footer-links">
+              <a href="./index.html" class="footer-link">Home</a>
+              <a href="./villa.html" class="footer-link">The Villa</a>
+              <a href="./stay.html" class="footer-link">Stay</a>
+              <a href="#gallerySection" class="footer-link">Gallery</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">CONNECT</div>
+            <div class="footer-links">
+              <a href="https://www.instagram.com/pearlstonevilla?igsi=MWlxdXl2NnV4MXRxbw==" target="_blank" rel="noopener" class="footer-link">Instagram</a>
+              <a href="https://wa.me/919970001554" target="_blank" rel="noopener" class="footer-link">WhatsApp</a>
+              <a href="tel:+919970001554" class="footer-link">+91 99700 01554</a>
+              <a href="https://maps.app.goo.gl/38owRbvD3YBK7ToHA" target="_blank" rel="noopener" class="footer-link">Google Maps</a>
+              <a href="https://www.airbnb.com/rooms/1641803912745461651?unique_share_id=f7a27b23-76ab-4ea4-8b20-8a8e5089aa7b&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="footer-link">Airbnb</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title">RESERVATIONS</div>
+            <p style="font-size: 0.8rem; color: var(--color-text-light-muted); margin-bottom: 16px;">
+              Book confidentially via Airbnb or connect directly with our private concierge.
+            </p>
+            <a href="https://www.airbnb.com/rooms/1641803912745461651?unique_share_id=f7a27b23-76ab-4ea4-8b20-8a8e5089aa7b&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn btn-white-solid" style="padding: 10px 20px;">BOOK YOUR STAY</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 PEARLSTONE VILLA. NASHIK, MAHARASHTRA, INDIA. ALL RIGHTS RESERVED.</span>
+          <span>PRIVATE WATERFRONT SANCTUARY</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FLOATING CONCIERGE ACTION DOCK (5 ACTIONS) -->
+    <aside class="floating-action-dock" id="actionDock" aria-label="Concierge Dock">
+      <!-- 1. Ask Pearlstone -->
+      <div class="dock-item">
+        <button class="dock-btn" id="openChatbotBtn" title="Ask Pearlstone Concierge" aria-label="Ask Pearlstone Concierge">
+          <svg class="dock-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        </button>
+        <div class="dock-tooltip">Ask Pearlstone</div>
+      </div>
+
+      <!-- 2. Instagram -->
+      <div class="dock-item">
+        <a href="https://www.instagram.com/pearlstonevilla?igsi=MWlxdXl2NnV4MXRxbw==" target="_blank" rel="noopener" class="dock-btn" title="Follow on Instagram" aria-label="Instagram">
+          <svg class="dock-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <div class="dock-tooltip">Instagram</div>
+      </div>
+
+      <!-- 3. WhatsApp -->
+      <div class="dock-item">
+        <a href="https://wa.me/919970001554?text=Hi%20Pearlstone%20Villa%2C%20I%20would%20like%20to%20know%20more%20about%20the%20villa." target="_blank" rel="noopener" class="dock-btn" title="Chat on WhatsApp" aria-label="WhatsApp">
+          <svg class="dock-icon" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.073-2.027-.478-.89-.368-1.583-.984-2.181-1.583-.778-.781-1.341-1.734-1.34-2.784 0-1.09.569-1.637.771-1.85.197-.207.433-.26.577-.26.143 0 .288.002.415.008.134.006.313-.051.488.37.181.433.616 1.503.67 1.613.054.11.09.239.018.384-.072.146-.109.237-.217.363-.108.127-.229.283-.327.38-.11.109-.224.227-.097.445.127.218.563.927 1.209 1.503.834.743 1.537.973 1.755 1.082.218.109.345.091.472-.055.127-.145.541-.631.686-.849.144-.218.289-.182.487-.109.198.073 1.258.593 1.474.701.217.109.362.163.416.254.054.091.054.526-.09 1.031z"/></svg>
+        </a>
+        <div class="dock-tooltip">WhatsApp</div>
+      </div>
+
+      <!-- 4. Call -->
+      <div class="dock-item">
+        <a href="tel:+919970001554" class="dock-btn" title="Call Concierge" aria-label="Call">
+          <svg class="dock-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+        <div class="dock-tooltip">Call Concierge</div>
+      </div>
+
+      <!-- 5. Google Maps -->
+      <div class="dock-item">
+        <a href="https://maps.app.goo.gl/38owRbvD3YBK7ToHA" target="_blank" rel="noopener" class="dock-btn" title="Open Google Maps" aria-label="Google Maps">
+          <svg class="dock-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </a>
+        <div class="dock-tooltip">Directions</div>
+      </div>
+    </aside>
+
+    <!-- ASK PEARLSTONE CONCIERGE CHAT PANEL -->
+    <div class="concierge-panel" id="conciergePanel" aria-hidden="true">
+      <div class="concierge-header">
+        <div class="concierge-title">ASK PEARLSTONE</div>
+        <button class="concierge-close" id="closeChatbotBtn" aria-label="Close Assistant">✕</button>
+      </div>
+      
+      <div class="concierge-messages" id="chatMessages">
+        <div class="msg-bubble assistant">
+          Welcome to Pearlstone Villa. How can I help you plan your stay?
+        </div>
+      </div>
+
+      <div class="concierge-chips">
+        <button class="chip-btn" data-query="Tell me about the villa">About the Villa</button>
+        <button class="chip-btn" data-query="How can I book?">How to Book</button>
+        <button class="chip-btn" data-query="Is the pool private?">Private Pool</button>
+        <button class="chip-btn" data-query="Where is Pearlstone Villa?">Location</button>
+      </div>
+
+      <form class="concierge-input-row" id="chatForm">
+        <input type="text" id="chatInput" class="concierge-input" placeholder="Ask about Pearlstone..." autocomplete="off" />
+        <button type="submit" class="concierge-send-btn">SEND</button>
+      </form>
+    </div>
+
+    <!-- GALLERY LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+      <div class="lightbox-close" id="closeLightboxBtn">✕</div>
+      <div class="lightbox-nav-btn prev" id="prevLightboxBtn">‹</div>
+      <div class="lightbox-nav-btn next" id="nextLightboxBtn">›</div>
+      
+      <div class="lightbox-content">
+        <img src="" alt="Pearlstone Villa Gallery View" class="lightbox-image" id="lightboxImage" />
+        <div class="lightbox-caption-text" id="lightboxCaption"></div>
+      </div>
+    </div>
+
+  </div> <!-- /main-website-wrapper -->
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
