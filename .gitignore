@@ -1,7 +1,9 @@
 node_modules/
+dist/
 .git/
-ezgif-57ab77938986ce57-jpg.zip
+*.zip
 stitch_ref/
 copy_assets.js
 .DS_Store
 Thumbs.db
+

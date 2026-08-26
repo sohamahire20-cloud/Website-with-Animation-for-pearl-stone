@@ -68,6 +68,8 @@ const openLightboxAllBtn = document.getElementById('openLightboxAllBtn');
    ========================================================================== */
 
 if (canvas && ctx && landingGate) {
+  state.loadedStatus = new Uint8Array(TOTAL_FRAMES);
+
   function setupCanvas() {
     state.dpr = Math.min(window.devicePixelRatio || 1, 2);
     state.canvasWidth = window.innerWidth;
@@ -85,22 +87,82 @@ if (canvas && ctx && landingGate) {
     renderCurrentFrame();
   }
 
+  // Priority-based image loader
+  const loadingSet = new Set();
+  function loadSingleFrame(index, priority = false) {
+    if (index < 0 || index >= TOTAL_FRAMES) return;
+    if (state.images[index] || loadingSet.has(index)) return;
+
+    loadingSet.add(index);
+    const img = new Image();
+    if (priority) {
+      img.fetchPriority = 'high';
+    }
+    img.src = FRAME_PATH(index + 1);
+    img.onload = () => {
+      state.images[index] = img;
+      state.loadedStatus[index] = 1;
+      loadingSet.delete(index);
+      if (Math.round(state.currentFrame) === index) {
+        renderCurrentFrame();
+      }
+    };
+    img.onerror = () => {
+      loadingSet.delete(index);
+    };
+  }
+
+  // Progressive frame buffering window
+  function requestNearbyFrames(targetIndex) {
+    const start = Math.max(0, Math.floor(targetIndex) - 5);
+    const end = Math.min(TOTAL_FRAMES - 1, Math.floor(targetIndex) + 25);
+    for (let i = start; i <= end; i++) {
+      loadSingleFrame(i, i === Math.floor(targetIndex));
+    }
+  }
+
   function preloadFrames() {
+    // 1. Load the initial frame immediately with highest priority
     const firstImg = new Image();
+    firstImg.fetchPriority = 'high';
     firstImg.src = FRAME_PATH(1);
     firstImg.onload = () => {
       state.images[0] = firstImg;
+      state.loadedStatus[0] = 1;
       setupCanvas();
       renderFrame(0);
-    };
 
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
-      const img = new Image();
-      img.src = FRAME_PATH(i);
-      img.onload = () => {
-        state.images[i - 1] = img;
-      };
-    }
+      // 2. Buffer the first 30 frames for immediate smooth start
+      for (let i = 0; i < Math.min(35, TOTAL_FRAMES); i++) {
+        loadSingleFrame(i);
+      }
+
+      // 3. Buffer key milestone frames across the timeline (every 10th frame)
+      for (let i = 40; i < TOTAL_FRAMES; i += 10) {
+        loadSingleFrame(i);
+      }
+
+      // 4. Background queue for remaining frames
+      let bgIndex = 0;
+      function idleLoadNextBatch() {
+        let loadedInBatch = 0;
+        while (bgIndex < TOTAL_FRAMES && loadedInBatch < 4) {
+          if (!state.images[bgIndex]) {
+            loadSingleFrame(bgIndex);
+            loadedInBatch++;
+          }
+          bgIndex++;
+        }
+        if (bgIndex < TOTAL_FRAMES) {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(idleLoadNextBatch, { timeout: 200 });
+          } else {
+            setTimeout(idleLoadNextBatch, 80);
+          }
+        }
+      }
+      setTimeout(idleLoadNextBatch, 200);
+    };
   }
 
   function drawCoverImage(image) {
@@ -122,9 +184,27 @@ if (canvas && ctx && landingGate) {
     ctx.drawImage(image, offsetX, offsetY, scaledW, scaledH);
   }
 
+  function getBestAvailableFrame(index) {
+    if (state.images[index] && state.loadedStatus[index]) {
+      return state.images[index];
+    }
+    // Search outwards for nearest loaded frame to eliminate any flash/gap
+    for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+      const prev = index - offset;
+      if (prev >= 0 && state.images[prev] && state.loadedStatus[prev]) {
+        return state.images[prev];
+      }
+      const next = index + offset;
+      if (next < TOTAL_FRAMES && state.images[next] && state.loadedStatus[next]) {
+        return state.images[next];
+      }
+    }
+    return state.images[0] || null;
+  }
+
   function renderFrame(index) {
     const safeIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(index)));
-    const img = state.images[safeIndex];
+    const img = getBestAvailableFrame(safeIndex);
     if (img) {
       drawCoverImage(img);
     }
@@ -139,7 +219,7 @@ if (canvas && ctx && landingGate) {
     function tick() {
       const diff = state.targetFrame - state.currentFrame;
       if (Math.abs(diff) > 0.01) {
-        state.currentFrame += diff * 0.18; // responsive 2x lerp
+        state.currentFrame += diff * 0.18; // responsive lerp
       } else {
         state.currentFrame = state.targetFrame;
       }
@@ -157,7 +237,7 @@ if (canvas && ctx && landingGate) {
         cornerPercent.textContent = `${percent}%`;
       }
 
-      // Check for 100% completion
+      // Check for completion
       if (percent >= 99 && !state.isUnlocked) {
         if (gateUnlockContainer) gateUnlockContainer.classList.add('active');
         if (gateScrollHint) gateScrollHint.style.opacity = '0';
@@ -170,13 +250,27 @@ if (canvas && ctx && landingGate) {
 
   // Scrub controller for mouse wheel & trackpad
   function handleWheel(e) {
-    if (state.isUnlocked) return;
+    if (state.isUnlocked) {
+      // If at top of site and scrolling upward, re-engage landing gate naturally
+      if (window.scrollY <= 0 && e.deltaY < -15) {
+        state.isUnlocked = false;
+        landingGate.classList.remove('unlocked');
+        document.body.classList.add('landing-locked');
+        state.targetFrame = TOTAL_FRAMES - 1;
+        state.currentFrame = TOTAL_FRAMES - 1;
+        if (gateUnlockContainer) gateUnlockContainer.classList.add('active');
+        if (gateScrollHint) gateScrollHint.style.opacity = '0';
+        if (gateContent) gateContent.style.opacity = '0.15';
+        renderFrame(TOTAL_FRAMES - 1);
+      }
+      return;
+    }
 
     e.preventDefault();
     const delta = e.deltaY;
-    // Advance frames with smooth sensitivity
     const step = delta > 0 ? 2.5 : -2.5;
     state.targetFrame = Math.min(TOTAL_FRAMES - 1, Math.max(0, state.targetFrame + step));
+    requestNearbyFrames(state.targetFrame);
 
     // Fade brand text slightly as user scrubs
     if (gateContent) {
@@ -187,19 +281,34 @@ if (canvas && ctx && landingGate) {
 
   // Touch gesture scrub for mobile devices
   function handleTouchStart(e) {
-    if (state.isUnlocked) return;
     state.touchStartY = e.touches[0].clientY;
   }
 
   function handleTouchMove(e) {
-    if (state.isUnlocked) return;
-
     const currentY = e.touches[0].clientY;
     const diffY = state.touchStartY - currentY;
-    state.touchStartY = currentY;
 
+    if (state.isUnlocked) {
+      // On mobile at top of page, swiping down (diffY < -20) returns to landing gate
+      if (window.scrollY <= 0 && diffY < -20) {
+        state.isUnlocked = false;
+        landingGate.classList.remove('unlocked');
+        document.body.classList.add('landing-locked');
+        state.targetFrame = TOTAL_FRAMES - 1;
+        state.currentFrame = TOTAL_FRAMES - 1;
+        if (gateUnlockContainer) gateUnlockContainer.classList.add('active');
+        if (gateScrollHint) gateScrollHint.style.opacity = '0';
+        if (gateContent) gateContent.style.opacity = '0.15';
+        renderFrame(TOTAL_FRAMES - 1);
+        state.touchStartY = currentY;
+      }
+      return;
+    }
+
+    state.touchStartY = currentY;
     const step = diffY * 0.45;
     state.targetFrame = Math.min(TOTAL_FRAMES - 1, Math.max(0, state.targetFrame + step));
+    requestNearbyFrames(state.targetFrame);
 
     if (gateContent) {
       const progress = state.targetFrame / (TOTAL_FRAMES - 1);
